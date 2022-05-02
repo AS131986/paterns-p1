@@ -9,27 +9,31 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class DataHelper {
-    private DataHelper() {}
+    private DataHelper() {
+    }
 
     private static Faker faker;
 
     @BeforeAll
-    static void setUpAll() { faker = new Faker(new Locale("ru")); }
+    static void setUpAll() {
+        faker = new Faker(new Locale("ru"));
+    }
 
     public static String generateDate(int days) {
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
+
     String planningDate = generateDate(7);
 
 
-
-    public String generateDate2 (int days) {
+    public String generateDate2(int days) {
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
+
     String planningDate2 = generateDate2(9);
 
     @Value
-   public static class FormInfo {
+    public static class FormInfo {
         private String city;
         private String date;
         private String fullName;
@@ -49,7 +53,8 @@ public class DataHelper {
             String fullName = faker.name().fullName();
             String date = generateDate(7);
             String phoneNumber = faker.phoneNumber().phoneNumber();
-            return new FormInfo( city, date, fullName, phoneNumber);}
+            return new FormInfo(city, date, fullName, phoneNumber);
+        }
 
 
         public String getCity() {

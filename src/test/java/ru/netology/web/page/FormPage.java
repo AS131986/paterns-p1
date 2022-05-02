@@ -16,17 +16,19 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 
-
 public class FormPage {
 
     private static Faker faker;
 
     @BeforeAll
-    static void setUpAll() { faker = new Faker(new Locale("ru")); }
+    static void setUpAll() {
+        faker = new Faker(new Locale("ru"));
+    }
 
-    static String generateDate (int days) {
+    static String generateDate(int days) {
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
+
     String planningDate = generateDate(7);
 
     public void sendValidForm(DataHelper.FormInfo formInfo) {

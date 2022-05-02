@@ -1,4 +1,5 @@
 package ru.netology.web.test;
+
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -14,11 +15,14 @@ import static com.codeborne.selenide.Configuration.holdBrowserOpen;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 
+import org.openqa.selenium.chrome.ChromeDriver;
+
 public class SendFormPage {
 
-    public String generateDate2 (int days) {
+    public String generateDate2(int days) {
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
+
     String planningDate2 = generateDate2(9);
 
     @Test
@@ -29,6 +33,7 @@ public class SendFormPage {
         var formInfo = DataHelper.FormInfo.getFormInfo();
         formPage.sendValidForm(formInfo);
     }
+
     @Test
     void shouldSendFormRePlanning() {
         holdBrowserOpen = true;
