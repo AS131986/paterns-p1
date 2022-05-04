@@ -18,19 +18,6 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class FormPage {
 
-    private static Faker faker;
-
-    @BeforeAll
-    static void setUpAll() {
-        faker = new Faker(new Locale("ru"));
-    }
-
-    static String generateDate(int days) {
-        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-    }
-
-    String planningDate = generateDate(7);
-
     public void sendValidForm(DataHelper.FormInfo formInfo) {
         $x("//input[@placeholder='Город']").val(formInfo.getCity());
         $x("//input[@placeholder='Дата встречи']").click();
@@ -41,7 +28,7 @@ public class FormPage {
         $x("//*[@class='checkbox__box']").click();
         $(withText("Запланировать")).click();
         $x("//*[contains(text(),'Успешно!')]").should(Condition.appear, Duration.ofSeconds(15));
-        $(".notification__content").shouldHave(Condition.text("Встреча успешно запланирована на " + planningDate), Duration.ofSeconds(15));
+        $(".notification__content").shouldHave(Condition.text("Встреча успешно запланирована на " + DataHelper.generateDate(7)), Duration.ofSeconds(15));
 
     }
 }
